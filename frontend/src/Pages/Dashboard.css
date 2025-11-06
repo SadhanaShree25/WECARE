@@ -1,0 +1,159 @@
+/* 🩵 Main Container */
+.App-header{
+  text-align: center;
+  
+}
+.home-container {
+  min-height: 100vh;
+  background: radial-gradient(circle at top left, #2b5876, #4e4376);
+  background-attachment: fixed;
+  color: #222;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 3rem 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ✨ Animated Stars Background */
+.home-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background-image: radial-gradient(2px 2px at 20px 20px, white, transparent),
+    radial-gradient(2px 2px at 50px 100px, white, transparent),
+    radial-gradient(2px 2px at 150px 50px, white, transparent),
+    radial-gradient(2px 2px at 250px 150px, white, transparent);
+  background-size: 200px 200px;
+  animation: starsMove 20s linear infinite;
+  opacity: 0.4;
+  z-index: 0;
+}
+
+@keyframes starsMove {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-200px);
+  }
+}
+
+/* 🌟 Title */
+.home-container h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  margin-bottom: 0.3rem;
+  animation: fadeInDown 1s ease;
+  z-index: 1;
+  text-align: center;
+}
+
+/* ✨ Subtitle */
+.subtitle {
+  color: #d8e2f2;
+  font-size: 1.3rem;
+  margin-bottom: 3rem;
+  animation: fadeIn 1.5s ease;
+  z-index: 1;
+}
+
+/* 💠 Grid Layout for Cards (2x2) */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(250px, 1fr));
+  gap: 2rem;
+  width: 90%;
+  max-width: 800px;
+  justify-items: center;
+  z-index: 2;
+}
+
+/* 🩵 Card Style */
+.feature-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(15px);
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  padding: 2rem;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #222;
+  width: 100%;
+  max-width: 320px;
+}
+
+.feature-card .icon {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+  color: #222;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+
+.feature-card p {
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+/* 🧠 Hover Animation */
+.feature-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 15px 40px rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+/* ✨ Fade Animations */
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-container h1 {
+    font-size: 2rem;
+  }
+
+  .feature-card {
+    max-width: 90%;
+  }
+}
+.App-footer{
+  text-align: center;
+}
