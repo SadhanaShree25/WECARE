@@ -36,8 +36,10 @@ function App() {
             <p>&copy; {new Date().getFullYear()} WeCare. All rights reserved.</p>
           </footer>
         </div>
+        
       </AuthProvider>
     </Router>
+    
   );
 }
 

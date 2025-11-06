@@ -18,7 +18,7 @@ function Navbar() {
   return (
     <nav className="navbar">
       <Link to={currentUser ? "/dashboard" : "/"} className="logo">
-        MindShift
+        WeCare
       </Link>
       
       <div className="nav-links">

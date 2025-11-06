@@ -1,18 +1,40 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom'; // Import Link for navigation
 
 function HomePage() {
-  const navigate = useNavigate();
-
   return (
-    <div>
-      <h1>Test HomePage</h1>
-      <button onClick={() => {
-        console.log('Button clicked');
-        navigate('/login');
+    <div 
+      id="public-home" // <-- THIS ID CATCHES THE ANIMATION
+      className="home-container" 
+      style={{ 
+        minHeight: '70vh', 
+        display: 'flex', 
+        flexDirection: 'column', 
+        justifyContent: 'center', 
+        alignItems: 'center' 
+      }}
+    >
+      <h1 className="home-title">Welcome to MindShift</h1>
+      
+      <p className="home-subtitle" style={{ 
+        fontSize: '1.5rem', 
+        marginBottom: '2.5rem'
       }}>
-        Go to Login
-      </button>
+        A safe, anonymous space for student mental wellness.
+      </p>
+      
+      {/* Use a Link component instead of a button with navigate() */}
+      <Link 
+        to="/login" 
+        className="btn" // The CSS will style this button
+        style={{ 
+          fontSize: '1.25rem', 
+          padding: '16px 32px' 
+        }}
+      >
+        Chat With Me
+      </Link>
+      
     </div>
   );
 }

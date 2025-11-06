@@ -1,16 +1,19 @@
-/* --- 1. GLOBAL STYLES & ANIMATIONS --- */
+/* --- 1. GLOBAL STYLES & NEW DARK THEME --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 :root {
-  --primary-color: #6a5af9; /* A modern, vibrant purple */
-  --primary-hover: #5243d4;
-  --bg-main: #f8f9fa; /* Very light grey */
-  --bg-card: #ffffff;
-  --text-dark: #212529;
-  --text-light: #6c757d;
-  --border-color: #dee2e6;
-  --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --primary-color: #8A79F7; /* A softer, modern purple */
+  --primary-hover: #705fed;
+  --bg-main: #0a0a0a; /* Dark background */
+  --text-dark: #ffffff; /* White text */
+  --text-light: #a0a0a0; /* Light grey text */
+  
+  /* --- The "Frosted Glass" Effect --- */
+  --glass-bg: rgba(30, 30, 30, 0.6); /* Semi-transparent dark background */
+  --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  --glass-blur: blur(10px);
+  
   --radius: 12px;
   --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
@@ -21,17 +24,35 @@
   padding: 0;
 }
 
-html {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+html, body, #root {
+  height: 100%;
 }
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  background-color: var(--bg-main);
   color: var(--text-dark);
   line-height: 1.6;
+  
+  /* --- Background is now just a solid dark color --- */
+  background-color: var(--bg-main); 
+  /* background-image: url('/serene-bg.jpg'); // Removed, as it wasn't loading consistently */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
+
+/* --- 2. STICKY LAYOUT (No footer now) --- */
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-content {
+  flex-grow: 1; 
+}
+
+/* The .footer class is now removed since the component is gone */
 
 .app-container {
   max-width: 1200px;
@@ -39,63 +60,47 @@ body {
   padding: 0 1.5rem 2.5rem 1.5rem;
 }
 
-/* --- 2. OPENING PAGE ANIMATION --- */
-
-/* This is the trending, transparent, animated background */
-@keyframes animatedBackground {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* We apply the animation only to the #public-home wrapper */
+/* --- 3. OPENING PAGE --- */
 #public-home {
-  background: linear-gradient(-45deg, #6a5af9, #d16aff, #23a6d5, #23d5ab);
-  background-size: 400% 400%;
-  animation: animatedBackground 15s ease infinite;
   padding: 4rem 1.5rem;
-  border-radius: var(--radius);
-  color: #fff;
-  overflow: hidden;
   text-align: center;
 }
 
-/* Fade-in text animation */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 #public-home h1 {
-  color: #fff;
+  color: var(--text-dark);
   font-size: 3.5rem;
   font-weight: 700;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
   animation: fadeInUp 1s ease-out;
 }
 
 #public-home .home-subtitle {
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-light);
   font-size: 1.5rem !important;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.3);
   animation: fadeInUp 1.2s ease-out;
 }
 
 #public-home .btn {
   animation: fadeInUp 1.4s ease-out;
-  background-color: #fff;
-  color: var(--primary-color);
+  background-color: var(--primary-color);
+  color: #fff;
   padding: 16px 32px;
   font-size: 1.25rem;
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 #public-home .btn:hover {
-  background-color: #f8f9fa;
+  background-color: var(--primary-hover);
   transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
-/* --- 3. GENERAL COMPONENTS (Buttons, Cards, Forms) --- */
+/* --- 4. GENERAL COMPONENTS (Buttons, Cards, Forms) --- */
 .btn {
   display: inline-block;
   padding: 12px 24px;
@@ -123,23 +128,35 @@ body {
   padding: 14px 16px;
   font-size: 1rem;
   font-family: 'Inter', sans-serif;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius);
   margin-bottom: 1rem;
   transition: var(--transition);
+  
+  /* --- Dark Form Input --- */
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: var(--radius);
+}
+.form-input::placeholder {
+  color: #aaa;
 }
 .form-input:focus {
   outline: none;
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px hsla(241, 62%, 56%, 0.1);
+  box-shadow: 0 0 0 3px hsla(241, 62%, 56%, 0.3);
 }
 
 .card {
-  background: var(--bg-card);
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
   padding: 2.5rem;
   transition: var(--transition);
+  
+  /* --- Glass Card --- */
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
 }
 
 .subtitle {
@@ -149,18 +166,28 @@ body {
   max-width: 600px;
 }
 
-/* --- 4. NAVBAR --- */
+/* --- 5. NAVBAR --- */
 .navbar {
   display: flex;
-  justify-content: space-between;
+  /* --- Center the logo --- */
+  justify-content: center; /* This centers items horizontally */
   align-items: center;
   padding: 1.25rem 2rem;
-  background-color: var(--bg-card);
-  box-shadow: var(--shadow);
   margin: 1rem auto 2.5rem auto;
   border-radius: var(--radius);
   max-width: 1200px;
   width: calc(100% - 3rem);
+  
+  /* --- Glass Navbar --- */
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  
+  /* Hide nav-links if they exist in Navbar.jsx */
+  /* If you don't have nav links or want them to appear below the logo, you can remove this */
+  position: relative; 
 }
 .navbar .logo {
   font-size: 1.75rem;
@@ -168,33 +195,20 @@ body {
   color: var(--primary-color);
   text-decoration: none;
 }
+/* If you have .nav-links in your Navbar.jsx and want to hide them */
 .navbar .nav-links {
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
+  /* This hides the links you had on the right */
+  display: none; 
 }
-.navbar .nav-links a,
-.navbar .nav-links button {
-  text-decoration: none;
-  color: var(--text-light);
-  font-weight: 600;
-  transition: var(--transition);
-  background: none;
-  border: none;
-  font-size: 1rem;
-  font-family: 'Inter', sans-serif;
-  cursor: pointer;
-}
-.navbar .nav-links a:hover,
-.navbar .nav-links button:hover {
-  color: var(--primary-color);
-}
+/* If you want to put nav links back, you would re-enable display: flex for .nav-links 
+   and adjust the justify-content on .navbar for layout, e.g., space-between or around */
+
 .navbar .nav-username {
   color: var(--text-dark);
   font-weight: 600;
 }
 
-/* --- 5. DASHBOARD (Feature Cards) --- */
+/* --- 6. DASHBOARD (Feature Cards) --- */
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -207,6 +221,7 @@ body {
 .feature-card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-hover);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 .feature-card .icon {
   font-size: 2.5rem;
@@ -221,7 +236,7 @@ body {
   line-height: 1.6;
 }
 
-/* --- 6. SELF-CARE PAGE (Your New Page) --- */
+/* --- 7. SELF-CARE PAGE --- */
 .selfcare-container {
   max-width: 900px;
   margin: 0 auto;
@@ -238,15 +253,17 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  background-color: var(--bg-card);
   color: var(--text-dark);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius);
   padding: 1.25rem;
   min-width: 110px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
+  
+  /* --- Glass Button --- */
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius);
   transition: var(--transition);
   box-shadow: var(--shadow);
 }
@@ -272,7 +289,7 @@ body {
 .video-section h3 {
   margin-bottom: 1.5rem;
   font-size: 1.5rem;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--glass-border);
   padding-bottom: 0.5rem;
 }
 .video-grid {
@@ -281,10 +298,11 @@ body {
   gap: 2rem;
 }
 .video-card {
-  background-color: var(--bg-main);
+  background: rgba(0, 0, 0, 0.1);
   padding: 1.25rem;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 .video-card h4 {
   margin-bottom: 1rem;
@@ -314,7 +332,7 @@ body {
   }
 }
 
-/* --- 7. SUPPORT PAGE --- */
+/* --- 8. SUPPORT PAGE --- */
 .support-container h1 {
   text-align: center;
   margin-bottom: 0.5rem;
@@ -337,6 +355,7 @@ body {
 }
 .resource-card h3 {
   margin-bottom: 0.5rem;
+  color: var(--primary-color);
 }
 .resource-card p.support-phone {
   color: var(--text-dark);
@@ -345,19 +364,25 @@ body {
   margin-bottom: 1.5rem;
 }
 
-/* --- 8. AI CHATBOT & HISTORY --- */
+/* --- 9. AI CHATBOT & HISTORY --- */
 .chat-page-container {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 160px);
-  background: var(--bg-card);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-hover);
+  height: calc(100vh - 120px); /* Adjusted height as footer is removed */
+  min-height: 400px;
   overflow: hidden;
+
+  /* --- Glass Chat Window --- */
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--radius);
 }
 .chat-header {
   padding: 1.25rem 1.5rem;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: var(--glass-border);
 }
 .chat-header h2 {
   font-size: 1.25rem;
@@ -398,7 +423,7 @@ body {
 .user-message .username { color: rgba(255, 255, 255, 0.7); }
 
 .peer-message {
-  background-color: var(--bg-main);
+  background: rgba(255, 255, 255, 0.1);
   color: var(--text-dark);
   align-self: flex-start;
   border-bottom-left-radius: 4px;
@@ -408,17 +433,21 @@ body {
 .chat-input {
   display: flex;
   padding: 1.5rem;
-  border-top: 1px solid var(--border-color);
+  border-top: var(--glass-border);
   gap: 1rem;
-  background: #fdfdfd;
+  background: rgba(0, 0, 0, 0.2);
 }
 .chat-input input {
   flex-grow: 1;
   padding: 14px 16px;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius);
   font-size: 1rem;
   font-family: 'Inter', sans-serif;
+  
+  /* --- Dark Chat Input --- */
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: var(--radius);
 }
 
 /* Typing Indicator */
@@ -451,7 +480,7 @@ body {
 .history-container h2 {
   margin-top: 2rem;
   margin-bottom: 1rem;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--glass-border);
   padding-bottom: 0.5rem;
 }
 .history-list {
@@ -461,7 +490,11 @@ body {
 }
 .history-entry {
   padding: 1.5rem;
-  background-color: var(--bg-main);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: var(--glass-border);
+  border-radius: var(--radius);
 }
 .history-text.user {
   font-style: italic;
@@ -471,7 +504,7 @@ body {
   color: var(--text-dark);
 }
 
-/* --- 9. LOGIN PAGE --- */
+/* --- 10. LOGIN PAGE --- */
 .login-container {
   min-height: 70vh;
   display: flex;
@@ -496,9 +529,9 @@ body {
   padding: 14px;
 }
 .error-message {
-  color: var(--danger);
-  background-color: #ffebee;
-  border: 1px solid var(--danger);
+  color: #ffb4ab;
+  background-color: rgba(255, 59, 48, 0.15);
+  border: 1px solid rgba(255, 59, 48, 0.3);
   border-radius: var(--radius);
   padding: 0.75rem 1rem;
   margin-bottom: 1rem;
