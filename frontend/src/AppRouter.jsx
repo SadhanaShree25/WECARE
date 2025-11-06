@@ -18,6 +18,7 @@ function AppRouter() {
       <Route path="/" element={<HomePage />} />
       <Route path="/register" element={<Reg />} />
       <Route path="/login" element={<Reg />} />
+      
 
       {/* Protected Routes */}
       <Route
@@ -45,6 +46,9 @@ function AppRouter() {
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
+
 }
+  console.log('HomePage rendered');
+
 
 export default AppRouter;

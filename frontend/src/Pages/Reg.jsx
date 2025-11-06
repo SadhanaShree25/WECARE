@@ -1,33 +1,25 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
 
-// Helper to make Firebase errors friendlier
-const getFriendlyErrorMessage = (errorCode) => {
-  switch (errorCode) {
-    case 'auth/invalid-credential':
-      return 'Invalid email or password. Please try again.';
-    case 'auth/email-already-in-use':
-      return 'This email is already registered. Please log in.';
-    case 'auth/weak-password':
-      return 'Password must be at least 6 characters long.';
-    case 'auth/invalid-email':
-      return 'Please enter a valid email address.';
-    default:
-      return 'An unexpected error occurred. Please try again.';
-  }
-};
+// ... your getFriendlyErrorMessage function ...
 
 function Reg() {
-  const [isRegistering, setIsRegistering] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { register, login } = useAuth();
+
+  const [isRegistering, setIsRegistering] = useState(location.pathname === '/register');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [username, setUsername] = useState(''); // Only for registration
+  const [username, setUsername] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const { register, login } = useAuth();
-  const navigate = useNavigate();
+  // Sync form mode with URL path
+  useEffect(() => {
+    setIsRegistering(location.pathname === '/register');
+  }, [location.pathname]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -104,7 +96,10 @@ function Reg() {
 
         <div style={{ marginTop: '1.5rem', textAlign: 'center' }}>
           <button
-            onClick={() => setIsRegistering(!isRegistering)}
+            onClick={() => {
+              const targetPath = isRegistering ? '/login' : '/register';
+              navigate(targetPath);
+            }}
             disabled={loading}
             style={{
               background: 'none',

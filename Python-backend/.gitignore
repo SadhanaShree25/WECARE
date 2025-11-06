@@ -1,0 +1,14 @@
+This file tells Git what to ignore
+
+Ignore the environment variables file
+
+.env
+
+Ignore the Python virtual environment folder
+
+venv/
+
+Ignore Python cache files
+
+pycache/
+*.pyc

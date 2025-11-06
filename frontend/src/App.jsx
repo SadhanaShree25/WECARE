@@ -23,8 +23,8 @@ function App() {
   }
 
   return (
-    <AuthProvider value={{ currentUser }}>
-      <Router>
+    <Router> {/* ✅ Router must be outermost */}
+      <AuthProvider value={{ currentUser }}>
         <div className="App">
           <header className="App-header">
             <h1>WeCare Mental Health Support</h1>
@@ -36,8 +36,8 @@ function App() {
             <p>&copy; {new Date().getFullYear()} WeCare. All rights reserved.</p>
           </footer>
         </div>
-      </Router>
-    </AuthProvider>
+      </AuthProvider>
+    </Router>
   );
 }
 
