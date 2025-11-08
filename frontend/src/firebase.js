@@ -1,4 +1,5 @@
 // Paste your config object from the Firebase Console here
+
 const firebaseConfig = {
   apiKey: "AIzaSyD5lqG3_ymCDjX4GPtR1JndNN95aUdYmQM",
   authDomain: "wecare-2eada.firebaseapp.com",

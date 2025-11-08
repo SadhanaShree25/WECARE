@@ -8,6 +8,8 @@ import AIChatbot from './Pages/AIChatbot';
 import History from './Pages/History';
 import SelfCare from './Pages/SelfCare';
 import { useAuth } from './AuthContext';
+import ProfilePage from './Pages/ProfilePage';
+
 
 function AppRouter() {
   const { currentUser } = useAuth();
@@ -41,6 +43,9 @@ function AppRouter() {
         path="/selfcare"
         element={currentUser ? <SelfCare /> : <Navigate to="/register" />}
       />
+
+      <Route path="/profile" element={<ProfilePage />} />
+
 
       {/* Fallback Route */}
       <Route path="*" element={<Navigate to="/" />} />

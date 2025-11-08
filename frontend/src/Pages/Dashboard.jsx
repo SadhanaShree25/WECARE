@@ -12,6 +12,8 @@ function Dashboard() {
         What support do you need today?
       </p>
 
+      <Link to="/profile">Profile</Link>
+
       <div className="features-grid" style={{ display: 'grid', gap: '1.5rem', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))' }}>
         <Link to="/chatbot" className="card feature-card" style={cardStyle}>
           <div className="icon">🤖</div>
