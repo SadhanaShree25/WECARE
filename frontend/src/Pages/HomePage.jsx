@@ -26,7 +26,7 @@ function HomePage() {
           height: '100%',
         }}
       >
-        <h1 className="home-title">Welcome to MindShift</h1>
+        <h1 className="home-title">Welcome to WeCare</h1>
 
         <p
           className="home-subtitle"
@@ -36,7 +36,7 @@ function HomePage() {
             textAlign: 'center',
           }}
         >
-          A safe, anonymous space for student mental wellness.
+          A safe, space for student mental wellness.
         </p>
 
         <Link
