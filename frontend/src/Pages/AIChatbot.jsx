@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
+import './AIChatbotPage.css';
+
 // REMOVED: httpsCallable and 'functions'
+
 import {
   collection,
   addDoc,
@@ -187,7 +190,7 @@ function AIChatbotPage() {
               }`}
             >
               <span className="username">
-                {msg.role === 'user' ? 'You' : 'MindShift AI'}
+                {msg.role === 'user' ? 'You' : 'WeCare AI'}
               </span>
               
               {/*

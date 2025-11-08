@@ -11,7 +11,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, user => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
       setLoading(false);
     });
@@ -23,23 +23,24 @@ function App() {
   }
 
   return (
-    <Router> {/* ✅ Router must be outermost */}
+    <Router>
       <AuthProvider value={{ currentUser }}>
         <div className="App">
           <header className="App-header">
             <h1>WeCare Mental Health Support</h1>
           </header>
+
           <main>
+            {/* All routing handled in AppRouter */}
             <AppRouter />
           </main>
+
           <footer className="App-footer">
             <p>&copy; {new Date().getFullYear()} WeCare. All rights reserved.</p>
           </footer>
         </div>
-        
       </AuthProvider>
     </Router>
-    
   );
 }
 

@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 :root {
-  /* Colors matched to your image (Soft Blue/Teal) */
+  /* New Mild & Aesthetic Palette */
   --primary-color: #008080; /* Calming Teal */
   --primary-hover: #006666;
   --bg-main: #f4f7f6;      /* Soft Off-White/Light Gray */
@@ -33,7 +33,7 @@ body {
   line-height: 1.6;
 }
 
-/* --- 2. STICKY LAYOUT (No footer now) --- */
+/* --- 2. STICKY FOOTER LAYOUT --- */
 .app-layout {
   display: flex;
   flex-direction: column;
@@ -81,11 +81,11 @@ body {
   overflow: hidden; 
   padding: 2rem;
   
-  /* NEW: Soft Blue/Cyan Animated Gradient (matches your image colors) */
+  /* NEW: Soft Blue/Cyan Animated Gradient (matches the light theme) */
   background: linear-gradient(
     -45deg, 
     #edf7fa, /* Very light blue */
-    #e8f4f7, /* Slightly darker light blue */
+    #e8f4f7, /* Pale Teal */
     #f0f8ff, /* White-blue */
     #e8f4f7  
   );
@@ -192,11 +192,11 @@ body {
   max-width: 600px;
 }
 
-/* --- 5. NAVBAR (FIXED HEADING) --- */
+/* --- 5. NAVBAR (Profile on Right Fix) --- */
 .navbar {
   display: flex;
-  /* FIX: Center the logo/heading */
-  justify-content: center; 
+  /* FIX: Logo left, Profile right */
+  justify-content: space-between; 
   align-items: center;
   padding: 1.25rem 2rem;
   background-color: var(--bg-card);
@@ -217,32 +217,86 @@ body {
   gap: 1.5rem;
   align-items: center;
 }
-.navbar .nav-links a,
-.navbar .nav-links button {
-  text-decoration: none;
-  color: var(--text-light);
-  font-weight: 600;
-  transition: var(--transition);
+
+/* --- NEW STYLES for the Profile Menu --- */
+.profile-menu-container {
+  position: relative;
+}
+.profile-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid var(--primary-color);
+  object-fit: cover; 
+}
+.dropdown {
+  position: absolute;
+  top: 55px; /* Position below the icon */
+  right: 0;
+  width: 160px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-hover);
+  overflow: hidden;
+  z-index: 100;
+  animation: fadeIn 0.2s ease-out;
+}
+.dropdown button {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
   background: none;
   border: none;
-  font-size: 1rem;
+  text-align: left;
+  color: var(--text-light);
   font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
+  transition: var(--transition);
 }
-.navbar .nav-links a:hover,
-.navbar .nav-links button:hover {
-  color: var(--primary-color);
+.dropdown button:hover {
+  background-color: var(--bg-main);
+  color: var(--text-dark);
 }
+/* --- End of Profile Menu Styles --- */
+
 .navbar .nav-username {
   color: var(--text-dark);
   font-weight: 600;
 }
+.navbar .btn-logout {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-light);
+}
+.navbar .btn-logout:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
+}
 
-/* --- 6. DASHBOARD (Feature Cards) --- */
+
+/* --- 6. DASHBOARD (Centering Fix) --- */
+.home-container {
+  text-align: center; /* This centers the "Welcome" text and subtitle */
+  padding: 1rem 0;
+}
+.home-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
+  text-align: left; /* Keep card text left-aligned */
 }
 .feature-card {
   text-decoration: none;
@@ -256,6 +310,7 @@ body {
 .feature-card .icon {
   font-size: 2.5rem;
   margin-bottom: 1rem;
+  color: var(--primary-color);
 }
 .feature-card h3 {
   color: var(--primary-color);
@@ -377,6 +432,7 @@ body {
 .resource-card .icon {
   font-size: 2.5rem;
   margin-bottom: 1rem;
+  color: var(--primary-color);
 }
 .resource-card h3 {
   margin-bottom: 0.5rem;
@@ -548,4 +604,47 @@ body {
   padding: 0.75rem 1rem;
   margin-bottom: 1rem;
   text-align: left;
+}
+
+
+.App-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.home-title {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-top: 10px;
+  color: #1f2937;
+}
+
+.home-subtitle {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+
+
+/* Footer fixed at bottom and centered */
+.App-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f8f9fa; /* light gray background (you can change) */
+  text-align: center;
+  padding: 10px 0;
+  font-size: 14px;
+  color: #555;
+  border-top: 1px solid #ddd;
+  z-index: 1000;
+}
+
+/* Ensure main content doesn’t overlap with footer */
+main {
+  padding-bottom: 60px; /* space for footer height */
 }
